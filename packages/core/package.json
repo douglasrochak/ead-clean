@@ -1,0 +1,21 @@
+{
+  "name": "core",
+  "version": "1.0.0",
+  "description": "",
+  "main": "src/index.ts",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "eslint-config": "*",
+    "typescript-config": "*",
+    "vitest": "^1.2.0"
+  }
+}
