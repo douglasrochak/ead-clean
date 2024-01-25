@@ -17,6 +17,19 @@ export default class Validator {
     throw [{code: error} as ErrorValidate]
   }
 
+  static combine(...validators: Validator[]): ErrorValidate[] | null {
+    const errorFiltered = validators
+    .flatMap(validator => validator.errors)
+    .filter(error => error !== null) as ErrorValidate[]
+    return errorFiltered.length > 0 ? errorFiltered : null
+  }
+
+  isNull(error: string = "NOT_NULL"): Validator {
+    return this.value === null || this.value === undefined
+      ? this
+      : this.addError(error)
+  }
+
   notNull(error: string = "NULL"): Validator {
     return this.value !== null && this.value !== undefined
     ? this : this.addError(error)
@@ -30,8 +43,65 @@ export default class Validator {
     return validator.value?.trim() !== "" ? validator : validator.addError(error)
   }
 
+  greaterThan(minSize: number, error: string = "SMALL_SIZE"): Validator {
+    if (!this.value) return this
+    return this.value.length > minSize 
+    ? this
+    : this.addError(error)
+  }
+
+  lessThan(maxSize: number, error: string = "LARGE_SIZE"): Validator {
+    if (!this.value) return this
+    return this.value.length < maxSize 
+    ? this
+    : this.addError(error)
+  }
+
+  lessThanOrEqualTo(maxSize: number, error: string = "LARGE_SIZE"): Validator {
+    if (!this.value) return this
+    return this.value.length <= maxSize 
+    ? this
+    : this.addError(error)
+
+  }
+
+  GreaterThanOrEqualTo(minSize: number, error: string = "SMALL_SIZE"): Validator {
+    if (!this.value) return this
+    return this.value.length >= minSize 
+    ? this
+    : this.addError(error)
+  }
+
   uuid(error: string = "INVALID_ID"): Validator {
     return validate(this.value) ? this : this.addError(error)
+  }
+
+  url(error: string = "INVALID_URL"): Validator {
+    try {
+      new URL(this.value)
+      return this
+    } catch {
+      return this.addError(error)
+    }
+  }
+
+  email(error: string = "INVALID_EMAIL"): Validator {
+    const regex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/
+    return regex.test(this.value) ? this : this.addError(error)
+  }
+
+  passwordHash(error: string = "INVALID_PASSWORD_HASH"): Validator {
+    const regex = /^\$2[ayb]\$[0-9]{2}\$[A-Za-z0-9\.\/]{53}$/
+    return regex.test(this.value) ? this : this.addError(error)
+  }
+
+  strongPassword(error: string = "WEAK_PASSWORD"): Validator {
+    const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/
+    return regex.test(this.value) ? this : this.addError(error)
+  }
+
+  regex(regex: RegExp, error: string = "INVALID_REGEX"): Validator {
+    return regex.test(this.value) ? this : this.addError(error)
   }
 
   private addError(codeOrError: string | ErrorValidate): Validator {
