@@ -11,7 +11,7 @@ export default class Test {
     }
   }
 
-  static async withErrorAsync(fn: () => Promise<void>, ...errors: ErrorValidate[]) { 
+  static async withSyncError(fn: () => Promise<void>, ...errors: ErrorValidate[]) { 
     try {
       await fn()
       throw new Error("Should have thrown an error")
