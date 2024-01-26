@@ -6,7 +6,7 @@ import UserName from "../../shared/UserName";
 export interface UserProps extends EntityProps{
   name?: string;
   email?: string
-  password: string;
+  password?: string;
   admin?: boolean;
 }
 
@@ -19,9 +19,9 @@ export default class User extends Entity<User, UserProps> {
   constructor(props: UserProps) {
     super(props);
 
-    this.name = new UserName(props.name!);
-    this.email = new Email(props.email)
-    this.password = props.password ? new PasswordHash(props.password) : null
+    this.name = new UserName(props.name!, 'name', 'User');
+    this.email = new Email(props.email, 'email', 'User')
+    this.password = props.password ? new PasswordHash(props.password, 'password', 'User') : null
     this.admin = props.admin ?? false
   }
 }
