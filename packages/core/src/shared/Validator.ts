@@ -24,7 +24,7 @@ export default class Validator {
     return errorFiltered.length > 0 ? errorFiltered : null
   }
 
-  isNull(error: string = "NOT_NULL"): Validator {
+  null(error: string = "NOT_NULL"): Validator {
     return this.value === null || this.value === undefined
       ? this
       : this.addError(error)
@@ -43,21 +43,20 @@ export default class Validator {
     return validator.value?.trim() !== "" ? validator : validator.addError(error)
   }
 
-  greaterThan(minSize: number, error: string = "SMALL_SIZE"): Validator {
+  sizeGreaterThan(minSize: number, error: string = "SIZE_TOO_SMALL"): Validator {
     if (!this.value) return this
-    return this.value.length > minSize 
-    ? this
-    : this.addError(error)
+    return this.value.length > minSize ? this
+    : this.addError({ code: error, min: minSize })
   }
 
-  lessThan(maxSize: number, error: string = "LARGE_SIZE"): Validator {
+  sizeLessThan(maxSize: number, error: string = "SIZE_EXCEEDS_LIMIT"): Validator {
     if (!this.value) return this
     return this.value.length < maxSize 
     ? this
     : this.addError(error)
   }
 
-  lessThanOrEqualTo(maxSize: number, error: string = "LARGE_SIZE"): Validator {
+  sizeLessThanOrEqual(maxSize: number, error: string = "SIZE_EXCEEDS_LIMIT"): Validator {
     if (!this.value) return this
     return this.value.length <= maxSize 
     ? this
@@ -65,11 +64,27 @@ export default class Validator {
 
   }
 
-  GreaterThanOrEqualTo(minSize: number, error: string = "SMALL_SIZE"): Validator {
+  sizeGreaterThanOrEqual(minSize: number, error: string = "SIZE_TOO_SMALL"): Validator {
     if (!this.value) return this
     return this.value.length >= minSize 
     ? this
     : this.addError(error)
+  }
+
+  lessThan(max: number, error: string = "SIZE_EXCEEDS_LIMIT"): Validator {
+    return this.value < max ? this : this.addError({ code: error, max });
+  }
+
+  lessThanOrEqual(max: number, error: string = "SIZE_EXCEEDS_LIMIT"): Validator {
+      return this.value <= max ? this : this.addError({ code: error, max });
+  }
+
+  greaterThan(min: number, error: string = "SIZE_TOO_SMALL"): Validator {
+      return this.value > min ? this : this.addError({ code: error, min });
+  }
+
+  greaterThanOrEqual(min: number, error: string = "SIZE_TOO_SMALL"): Validator {
+      return this.value >= min ? this : this.addError({ code: error, min });
   }
 
   uuid(error: string = "INVALID_ID"): Validator {
@@ -86,7 +101,7 @@ export default class Validator {
   }
 
   email(error: string = "INVALID_EMAIL"): Validator {
-    const regex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/
+    const regex = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/
     return regex.test(this.value) ? this : this.addError(error)
   }
 
