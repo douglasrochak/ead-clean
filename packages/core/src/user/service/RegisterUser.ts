@@ -3,7 +3,7 @@ import StrongPassword from "../../shared/StrongPassword";
 import UseCase from "../../shared/UseCase";
 import Validator from "../../shared/Validator";
 import CryptoProvider from "../provider/CryptoProvider";
-import RepositoryUser from "../provider/RepositoryUser";
+import UserRepository from "../provider/UserRepository";
 
 export type Input = {
   name: string;
@@ -15,7 +15,7 @@ export type Input = {
 export default class RegisterUser implements UseCase<Input, void> {
 
   constructor(
-    private readonly repository: RepositoryUser,
+    private readonly repository: UserRepository,
     private readonly cryptoProvider: CryptoProvider,
   ) { }
 
