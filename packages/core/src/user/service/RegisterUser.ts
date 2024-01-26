@@ -22,10 +22,10 @@ export default class RegisterUser implements UseCase<Input, void> {
   async execute(input: Input): Promise<void> {
     const { name, email, password } = input
     const strongPassword = new StrongPassword(password)
-    const cryptoPassword = this.cryptoProvider.crypto(strongPassword.value)
+    const cryptoPassword = this.cryptoProvider.encrypt(strongPassword.value)
 
     const userAlreadyExists = await this.repository.findByEmail(email)
-    Validator.value(userAlreadyExists)
+    Validator.value(userAlreadyExists?.email.value)
     .null("USER_ALREADY_EXISTS")
     .throwIfError()
 
