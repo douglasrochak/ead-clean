@@ -8,12 +8,15 @@
   },
   "scripts": {
     "test": "vitest run",
+    "test:ui": "vitest --ui",
     "test:watch": "vitest"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@vitest/coverage-v8": "^1.2.2",
+    "@vitest/ui": "^1.2.2",
     "eslint-config": "*",
     "typescript-config": "*",
     "vitest": "^1.2.0"
