@@ -10,11 +10,14 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@prisma/client": "^5.8.1",
+    "bcrypt": "^5.1.1",
     "core": "*",
     "prisma": "^5.8.1",
     "ts-node": "^10.9.2"
   },
   "devDependencies": {
+    "@types/bcrypt": "^5.0.2",
     "eslint-config": "*",
     "typescript-config": "*"
   }
