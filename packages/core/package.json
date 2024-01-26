@@ -8,6 +8,7 @@
   },
   "scripts": {
     "test": "vitest run",
+    "test:coverage": "vitest --coverage",
     "test:ui": "vitest --ui",
     "test:watch": "vitest"
   },
