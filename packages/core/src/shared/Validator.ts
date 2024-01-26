@@ -105,7 +105,7 @@ export default class Validator {
     return regex.test(this.value) ? this : this.addError(error)
   }
 
-  passwordHash(error: string = "INVALID_PASSWORD_HASH"): Validator {
+  passwordHash(error: string = "INVALID_HASH"): Validator {
     const regex = /^\$2[ayb]\$[0-9]{2}\$[A-Za-z0-9\.\/]{53}$/
     return regex.test(this.value) ? this : this.addError(error)
   }
