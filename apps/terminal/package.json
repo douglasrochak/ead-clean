@@ -11,10 +11,11 @@
   "license": "ISC",
   "dependencies": {
     "core": "*",
+    "prisma": "^5.8.1",
     "ts-node": "^10.9.2"
   },
   "devDependencies": {
-    "typescript-config": "*",
-    "eslint-config": "*"
+    "eslint-config": "*",
+    "typescript-config": "*"
   }
 }
