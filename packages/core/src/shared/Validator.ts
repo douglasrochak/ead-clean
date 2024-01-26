@@ -49,14 +49,14 @@ export default class Validator {
     : this.addError({ code: error, min: minSize })
   }
 
-  sizeLessThan(maxSize: number, error: string = "SIZE_EXCEEDS_LIMIT"): Validator {
+  sizeLessThan(maxSize: number, error: string = "LARGE_SIZE"): Validator {
     if (!this.value) return this
     return this.value.length < maxSize 
     ? this
     : this.addError(error)
   }
 
-  sizeLessThanOrEqual(maxSize: number, error: string = "SIZE_EXCEEDS_LIMIT"): Validator {
+  sizeLessThanOrEqual(maxSize: number, error: string = "LARGE_SIZE"): Validator {
     if (!this.value) return this
     return this.value.length <= maxSize 
     ? this
@@ -64,26 +64,26 @@ export default class Validator {
 
   }
 
-  sizeGreaterThanOrEqual(minSize: number, error: string = "SIZE_TOO_SMALL"): Validator {
+  sizeGreaterThanOrEqual(minSize: number, error: string = "SMALL_SIZE"): Validator {
     if (!this.value) return this
     return this.value.length >= minSize 
     ? this
     : this.addError(error)
   }
 
-  lessThan(max: number, error: string = "SIZE_EXCEEDS_LIMIT"): Validator {
+  lessThan(max: number, error: string = "LARGE_SIZE"): Validator {
     return this.value < max ? this : this.addError({ code: error, max });
   }
 
-  lessThanOrEqual(max: number, error: string = "SIZE_EXCEEDS_LIMIT"): Validator {
+  lessThanOrEqual(max: number, error: string = "LARGE_SIZE"): Validator {
       return this.value <= max ? this : this.addError({ code: error, max });
   }
 
-  greaterThan(min: number, error: string = "SIZE_TOO_SMALL"): Validator {
+  greaterThan(min: number, error: string = "SMALL_SIZE"): Validator {
       return this.value > min ? this : this.addError({ code: error, min });
   }
 
-  greaterThanOrEqual(min: number, error: string = "SIZE_TOO_SMALL"): Validator {
+  greaterThanOrEqual(min: number, error: string = "SMALL_SIZE"): Validator {
       return this.value >= min ? this : this.addError({ code: error, min });
   }
 
