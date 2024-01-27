@@ -38,6 +38,10 @@ export default class Terminal {
     terminal.green(`${newLine ? '\n' : ''}${text}`)
   }
 
+  static info(text: string, newLine = true) {
+    terminal.cyan(`${newLine ? '\n' : ''}${text}`)
+}
+
   static error(text: string, newLine = true) {
     terminal.red(`${newLine ? '\n' : ''}${text}`)
   }
