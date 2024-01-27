@@ -24,6 +24,7 @@ export default class UserFacade {
       email: userDTO.email!,
       password: userDTO.password!
     })
-    return user.props
+    
+    return {...user.props, createdAt: undefined, updatedAt: undefined} as any
   }
 }
