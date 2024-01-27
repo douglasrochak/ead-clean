@@ -14,10 +14,12 @@
     "bcrypt": "^5.1.1",
     "core": "*",
     "prisma": "^5.8.1",
+    "terminal-kit": "^3.0.1",
     "ts-node": "^10.9.2"
   },
   "devDependencies": {
     "@types/bcrypt": "^5.0.2",
+    "@types/terminal-kit": "^2.5.6",
     "eslint-config": "*",
     "typescript-config": "*"
   }
