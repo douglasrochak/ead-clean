@@ -1,2 +1,3 @@
-import { sum } from 'core'
-console.log(`A soma de 1 + 2 é ${sum(1,2)}`)
+import mainMenu from "./external/ui/menu/mainMenu";
+
+mainMenu()
