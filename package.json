@@ -21,8 +21,5 @@
   "workspaces": [
     "apps/*",
     "packages/*"
-  ],
-  "dependencies": {
-    "uuid": "^9.0.1"
-  }
+  ]
 }
