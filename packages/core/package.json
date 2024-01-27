@@ -22,5 +22,8 @@
     "eslint-config": "*",
     "typescript-config": "*",
     "vitest": "^1.2.0"
+  },
+  "dependencies": {
+    "uuid": "^9.0.1"
   }
 }
