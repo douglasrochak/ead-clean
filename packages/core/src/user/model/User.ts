@@ -24,4 +24,8 @@ export default class User extends Entity<User, UserProps> {
     this.password = props.password ? new PasswordHash(props.password, 'password', 'User') : null
     this.admin = props.admin ?? false
   }
+
+  withoutPassword(): User {
+    return this.clone({ password: undefined })
+  }
 }
