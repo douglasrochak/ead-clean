@@ -9,8 +9,8 @@ export default class Validator {
     readonly errors: ErrorValidate[] = []
   ) {}
 
-  static value(valor: any, attribute?: string, object?: string): Validator {
-    return new Validator(valor, attribute ?? null, object ?? null)
+  static value(value: any, attribute?: string, object?: string): Validator {
+    return new Validator(value, attribute ?? null, object ?? null)
   }
 
   static throwError(error: string): never {
@@ -123,7 +123,7 @@ export default class Validator {
     const baseError = typeof codeOrError === "string" ? {code: codeOrError} : codeOrError
     const error = {
       ...baseError,
-      valor: this.value,
+      value: this.value,
       attribute: this.attribute ?? undefined,
       object: this.object ?? undefined,
     }
