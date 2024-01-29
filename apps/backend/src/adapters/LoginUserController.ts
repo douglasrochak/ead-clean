@@ -23,7 +23,7 @@ export default class LoginUserController {
           admin: user.admin
         })
 
-        res.status(200).send(token)
+        res.status(200).send({ token })
       } catch (error) {
         res.status(400).send(Errors.handle(error))
       }
