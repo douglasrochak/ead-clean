@@ -1,7 +1,6 @@
-import { UserFacade } from "adapters";
 import Terminal from "../util/Terminal";
-import UserRepositoryPrisma from "../../db/UserRepositoryPrisma";
-import BcryptCryptoProvider from "../../auth/BcryptCryptoProvider";
+import Api from "../../api/Api";
+import { BASE_URL } from "../../../constants";
 
 export async function loginUser(){
   Terminal.title("Login User")
@@ -9,15 +8,12 @@ export async function loginUser(){
   const email = await Terminal.requiredInput("Email:")
   const password = await Terminal.requiredInput("Password:", { echo: false })
 
-  const userRepo = new UserRepositoryPrisma()
-  const cryptoProvider = new BcryptCryptoProvider()
-
   try {
-    const facade = new UserFacade(userRepo, cryptoProvider)
-    const user = await facade.login({ email, password })
+    const api = new Api(BASE_URL)
+    const token = await api.post<string>('/user/login', { email, password })
 
     Terminal.success("User logged in successfully!")
-    Terminal.info(JSON.stringify(user, null, 2))
+    Terminal.info(JSON.stringify(token, null, 2))
   } catch (error) {
     Terminal.error(JSON.stringify(error, null, 2))
   } finally {

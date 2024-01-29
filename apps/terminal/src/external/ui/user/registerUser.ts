@@ -1,9 +1,8 @@
-import { RegisterUser } from "core";
-import BcryptCryptoProvider from "../../auth/BcryptCryptoProvider";
-import UserRepositoryPrisma from "../../db/UserRepositoryPrisma";
 import Terminal from "../util/Terminal";
+import Api from "../../api/Api";
+import { BASE_URL } from "../../../constants";
 
-export async function registerUser(){
+export async function registerUser() {
   Terminal.title("Register User")
 
   const name = await Terminal.requiredInput("Name:")
@@ -11,11 +10,10 @@ export async function registerUser(){
   const password = await Terminal.requiredInput("Password:", { echo: false })
   const admin = await Terminal.confirmInput("Admin?")
 
-  const userRepo = new UserRepositoryPrisma()
-  const cryptoProvider = new BcryptCryptoProvider()
+  
   try {
-    const registerUser = new RegisterUser(userRepo, cryptoProvider)
-    await registerUser.execute({ name ,email, password, admin })
+    const api = new Api(BASE_URL)
+    await api.post('/user/register', { name, email, password, admin})
     Terminal.success("User registered successfully!")
   } catch (error) {
     Terminal.error(JSON.stringify(error, null, 2))
