@@ -14,7 +14,7 @@ export default class RegisterUserController {
         const { name, email, password } = req.body 
         const facade = new UserFacade(repo, cryptoProvider)
         await facade.registerUser({ name, email, password })
-        res.sendStatus(201)
+        res.status(201).json({})
       } catch (error) {
         res.status(400).send(Errors.handle(error))
       }
