@@ -1,6 +1,7 @@
 import Terminal from "../util/Terminal";
 import Api from "../../api/Api";
 import { BASE_URL } from "../../../constants";
+import Session from "../../../data/Session";
 
 export async function loginUser(){
   Terminal.title("Login User")
@@ -10,10 +11,10 @@ export async function loginUser(){
 
   try {
     const api = new Api(BASE_URL)
-    const token = await api.post<string>('/user/login', { email, password })
+    const response = await api.post<{token: string}>('/user/login', { email, password })
 
     Terminal.success("User logged in successfully!")
-    Terminal.info(JSON.stringify(token, null, 2))
+    Session.init(response.token)
   } catch (error) {
     Terminal.error(JSON.stringify(error, null, 2))
   } finally {
