@@ -1,17 +1,16 @@
 import Validator from "../../src/shared/Validator"
+import SimpleText from "./SimpleText"
 
-export default class UserName {
+export default class UserName extends SimpleText {
   constructor(
   readonly fullName: string,
   attribute?: string,
   object?: string,
   ) {
+      super(fullName, 4, 120, attribute, object)
       this.fullName = fullName?.trim() ?? ""
 
       Validator.value(fullName, attribute, object)
-      .notEmpty()
-      .sizeGreaterThanOrEqual(4)
-      .sizeLessThanOrEqual(120)
       .regex(/^[a-zA-ZÀ-ú'\.-\s]*$/, "INVALID_CHARACTERS")
       .throwIfError()
 
