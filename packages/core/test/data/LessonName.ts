@@ -1,0 +1,56 @@
+export default class LessonName {
+
+  static random(): string {
+      const index = Math.floor(Math.random() * LessonName.names.length)
+      return LessonName.names[index]!
+  }
+
+  static readonly names = [
+      'Abstração',
+      'Declarations',
+      'Arrays',
+      'Arrow functions',
+      'Box Model',
+      'Classes abstratas',
+      'Classes',
+      'Configurando o TypeScript',
+      'Decorators',
+      'Destructuring',
+      'DOM',
+      'Encapsulamento',
+      'ES6',
+      'Estruturas de controle',
+      'Estruturas de repetição',
+      'Eventos',
+      'Fetch API',
+      'Flexbox',
+      'Funções',
+      'Funções',
+      'Fundamentos de OO',
+      'Generics',
+      'Grid',
+      'Herança',
+      'HTML e CSS',
+      'Instalando o TypeScript',
+      'Interfaces',
+      'Introdução',
+      'JavaScript',
+      'Map',
+      'Mixins',
+      'Módulos',
+      'Namespaces',
+      'O que é o TypeScript?',
+      'Objetos',
+      'Operadores',
+      'Polimorfismo',
+      'Promises',
+      'Responsividade',
+      'Sass',
+      'Set',
+      'Spread operator',
+      'Template strings',
+      'Tipos avançados',
+      'Tipos básicos',
+      'Tipos de dados',
+  ]
+}
