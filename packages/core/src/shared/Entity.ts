@@ -21,7 +21,7 @@ export default abstract class Entity<Type, Props extends EntityProps> {
     return this.id.different(entity.id)
   }
 
-  clone(newProps: Props, ...args: any[]): Type {
+  clone(newProps: Partial<Props>, ...args: any[]): Type {
     return new (this.constructor as any)(
       {
         ...this.props,
