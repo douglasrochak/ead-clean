@@ -1,6 +1,8 @@
+import Course, { CourseProps } from './model/Course';
+
 import Lesson, { LessonProps } from './model/Lesson';
 import Lessons from './model/Lessons';
 
-export type { LessonProps }
+export type { CourseProps, LessonProps }
 
-export { Lesson, Lessons }
+export { Course, Lesson, Lessons }
