@@ -14,7 +14,7 @@ export default class User extends Entity<User, UserProps> {
   readonly name: UserName;
   readonly email: Email;
   readonly password: PasswordHash | null;
-  readonly admin: boolean;
+  readonly isAdmin: boolean;
 
   constructor(props: UserProps) {
     super(props);
@@ -22,7 +22,7 @@ export default class User extends Entity<User, UserProps> {
     this.name = new UserName(props.name!, 'name', 'User');
     this.email = new Email(props.email, 'email', 'User')
     this.password = props.password ? new PasswordHash(props.password, 'password', 'User') : null
-    this.admin = props.admin ?? false
+    this.isAdmin = props.admin ?? false
   }
 
   withoutPassword(): User {
