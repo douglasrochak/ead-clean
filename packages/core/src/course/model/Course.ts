@@ -57,7 +57,6 @@ export default class Course extends Entity<Course, CourseProps> {
 
     const lessons = props.lessons.map((props) => new Lesson(props))
     const duration = lessons.reduce((acc, lesson) => acc + lesson.duration.seconds, 0)
-    console.log('CALCULATE DURATION', duration)
     return { duration, lessonsQuantity: lessons.length }
   }
 
