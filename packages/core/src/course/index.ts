@@ -3,6 +3,9 @@ import Course, { CourseProps } from './model/Course';
 import Lesson, { LessonProps } from './model/Lesson';
 import Lessons from './model/Lessons';
 
-export type { CourseProps, LessonProps }
+import CourseRepository from './provider/CourseRepository';
+import SaveCourse from './service/SaveCourse';
 
-export { Course, Lesson, Lessons }
+export type { CourseProps, CourseRepository, LessonProps }
+
+export { Course, SaveCourse, Lesson, Lessons }
