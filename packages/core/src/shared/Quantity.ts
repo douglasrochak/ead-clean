@@ -18,7 +18,7 @@ export default class Quantity {
     return new Quantity(this.value + quantity.value, this.min)
   }
 
-  get zero(): boolean {
+  get isZero(): boolean {
     return this.value === 0
   }
 

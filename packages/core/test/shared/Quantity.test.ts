@@ -8,7 +8,7 @@ test("Should create a quantity", () => {
 
 test("Should create a zero quantity", () => {
     expect(new Quantity(0, 0).value).toBe(0)
-    expect(new Quantity(0, 0).zero).toBe(true)
+    expect(new Quantity(0, 0).isZero).toBe(true)
 })
 
 test("Should sum quantities", () => {
