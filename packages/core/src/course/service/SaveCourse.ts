@@ -1,5 +1,4 @@
 import { Course } from "..";
-import { User } from "../..";
 import UseCaseAdmin from "../../shared/UseCaseAdmin";
 import CourseRepository from "../provider/CourseRepository";
 
@@ -8,7 +7,7 @@ export default class SaveCourse extends UseCaseAdmin<Course, Course> {
     super();
   }
 
-  protected executeAsAdmin(course: Course, user?: User | undefined): Promise<Course> {
+  protected executeAsAdmin(course: Course): Promise<Course> {
     return this.repository.save(course)
   }
 
